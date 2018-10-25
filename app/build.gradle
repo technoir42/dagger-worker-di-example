@@ -1,0 +1,43 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlin-kapt"
+}
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "com.example.dagger.workerdi"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = false
+            }
+        }
+    }
+}
+
+kapt {
+    correctErrorTypes = true
+}
+
+dependencies {
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "androidx.appcompat:appcompat:$versions.androidx.appcompat"
+    implementation "android.arch.work:work-runtime:$versions.androidx.work"
+    implementation "android.arch.work:work-runtime-ktx:$versions.androidx.work"
+
+    compileOnly("com.google.auto.factory:auto-factory:$versions.autoFactory") {
+        transitive = false
+    }
+    compileOnly "javax.annotation:javax.annotation-api:$versions.javaxAnnotation"
+    kapt "com.google.auto.factory:auto-factory:$versions.autoFactory"
+
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+}
